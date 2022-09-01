@@ -67,6 +67,10 @@ class RasterDEMTileSource extends RasterTileSource implements Source {
                     tile.actor = this.dispatcher.getActor();
                     tile.actor.send('loadDEMTile', params, done.bind(this));
                 }
+            } else {
+                if (this.map._refreshExpiredTiles) tile.setExpiryData(img);
+                tile.state = 'empty';
+                callback(null);
             }
         }
 

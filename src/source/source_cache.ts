@@ -662,6 +662,8 @@ class SourceCache extends Evented {
             retain[tileID.key] = tileID;
 
             if (tile.hasData()) continue;
+            // an empty tile is not missing
+            if (tile.state === 'empty') continue;
 
             if (zoom < this._source.maxzoom) {
                 // save missing tiles that potentially have loaded children
